@@ -1,32 +1,72 @@
+//common
+const sortArr = (arr) => {
+    arr.sort((a, b) => {
+        if (a.name < b.name) { return -1; }
+        if (a.name > b.name) { return 1; }
+        return 0;
+    });
+}
+
+const builtSelectProduct = (product) => {
+    const new_product = document.createElement("button");
+    const text = document.createTextNode(product.name)
+    new_product.className = "select_product";
+    new_product.id = product.name;
+    new_product.onclick = function (event) {
+        showProductDetails(event);
+    }
+    
+    new_product.appendChild(text);
+
+    return new_product;
+}
+
+const displayProductsArray = (products) => {
+    products.forEach((product) => {
+        const new_product = builtSelectProduct(product);
+        results.appendChild(new_product);
+    });
+}
+
+const deleteDisplayedProducts = (filtered_products) => {
+    filtered_products.forEach((product) => {
+        const name = product.name;
+        document.getElementById(name).remove();
+    });
+}
+
 // timer
+const formatZeros = (time) => {
+    const timeString = time.toString();
+    return timeString.length < 2 ? "0" + timeString : timeString;
+}
+
+const formatTime = (date) => {
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+
+    return `${formatZeros(hours)}:${formatZeros(minutes)}:${formatZeros(seconds)}`;
+}
+
+const updateTime = () => {
+    const date = new Date();
+    timer_label.textContent = formatTime(date);
+}
+
 const timer_label = document.getElementById("timer");
 
 updateTime();
 setInterval(updateTime, 1000);
 
-function updateTime() {
-    const date = new Date();
-    timer_label.innerHTML = formatTime(date);
-}
-
-function formatTime(date) {
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var seconds = date.getSeconds();
-
-    hours = formatZeros(hours);
-    minutes = formatZeros(minutes);
-    seconds = formatZeros(seconds);
-
-    return `${hours}:${minutes}:${seconds}`;
-}
-
-function formatZeros(time) {
-    const timeString = time.toString();
-    return timeString.length < 2 ? "0" + timeString : timeString;
-}
-
 // items
+const showProductDetails = (event) => {
+    const product = products.find((product) => product.name === event.currentTarget.id);
+    document.getElementById("product_name").textContent = product.name;
+    document.getElementById("product_price").textContent = product.price;
+    document.getElementById("product_in_stock").textContent = product.in_stock;
+}
+
 const products = [
     { "name": "שווארמה", "price": "50", "in_stock": "10" },
     { "name": "קוביות קרח", "price": "10", "in_stock": "100" },
@@ -35,11 +75,7 @@ const products = [
     { "name": "קפה שחור", "price": "12", "in_stock": "321" }
 ];
 
-products.sort(function (a, b) {
-    if (a.name < b.name) { return -1; }
-    if (a.name > b.name) { return 1; }
-    return 0;
-});
+sortArr(products);
 
 var filtered_products = products.slice();
 
@@ -47,108 +83,66 @@ const results = document.getElementById("results");
 
 displayProductsArray(filtered_products);
 
-function displayProductsArray(products) {
-    for (const index in products) {
-        const elem = builtSelectItemComponent(products, index);
-        results.appendChild(elem);
-    }
-}
-
-function builtSelectItemComponent(array, index) {
-    var elem = document.createElement("button");
-    const text = document.createTextNode(array[index].name)
-    elem.className = "select_product";
-    elem.id = array[index].name;
-    elem.onclick = function (event) {
-        showProductDetails(event);
-    }
-    
-    elem.appendChild(text);
-
-    return elem;
-}
-
-function showProductDetails(event) {
-    const product_index = products.findIndex((product) => product.name === event.currentTarget.id);
-    document.getElementById("product_name").innerHTML = products[product_index].name;
-    document.getElementById("product_price").innerHTML = products[product_index].price;
-    document.getElementById("product_in_stock").innerHTML = products[product_index].in_stock;
-}
-
 // show/hide products
-const show_products = document.getElementById("show_products");
-
-function hideProducts() {
+const hideProducts = () => {
     deleteDisplayedProducts(filtered_products);
-    document.getElementById("product_name").innerHTML = "";
-    document.getElementById("product_price").innerHTML = "";
-    document.getElementById("product_in_stock").innerHTML = "";
+    document.getElementById("product_name").textContent = "";
+    document.getElementById("product_price").textContent = "";
+    document.getElementById("product_in_stock").textContent = "";
 
-    show_products.innerHTML = "הצג מוצרים";
+    show_products.textContent = "הצג מוצרים";
     show_products.onclick = showProducts;
 }
 
-function showProducts() {
+const showProducts = () => {
     filtered_products = products.slice();
     displayProductsArray(products);
-    show_products.innerHTML = "הסתר מוצרים";
+    show_products.textContent = "הסתר מוצרים";
     show_products.onclick = hideProducts;
 }
 
-function deleteDisplayedProducts(filtered_products) {
-    for (let index in filtered_products) {
-        const name = filtered_products[index].name;
-        document.getElementById(name).remove();
-    }
-}
+const show_products = document.getElementById("products_visibility");
 
 // search bar
-const serach_bar = document.getElementById("serach_bar");
+const showAllProducts = () => {
+    deleteDisplayedProducts(filtered_products);
+    filtered_products = products.slice();
+    displayProductsArray(filtered_products);
+}
 
-function searchForItems() {
+const searchForItems = () => {
     const search_word = serach_bar.value;
 
     if (search_word === "") {
-        deleteDisplayedProducts(filtered_products);
-        filtered_products = products.slice();
-        displayProductsArray(filtered_products);
+        showAllProducts();
     }
-    
-    const indexes = [];
-    filtered_products.forEach((product, index) => {
-        if (!product.name.includes(search_word)) {
-            indexes.push(index);
-        }
+        
+    const delete_products = filtered_products.filter(product => !product.name.includes(search_word));
+
+    delete_products.forEach(delete_product => {
+        const index = filtered_products.findIndex(product => product.name === delete_product.name);
+        filtered_products.splice(index,1);
     });
 
-    const deleted_products = [];
-    indexes.reverse();
-    for (let i = 0; i < indexes.length; i++) {
-        deleted_products.push(filtered_products.splice(indexes[i], 1)[0]);
-    }
-
-    deleteDisplayedProducts(deleted_products);
+    deleteDisplayedProducts(delete_products);
 }
 
-// sort
-function sortAscending() {
-    products.sort(function (a, b) {
-        if (a.name < b.name) { return -1; }
-        if (a.name > b.name) { return 1; }
-        return 0;
-    });
+const serach_bar = document.getElementById("serach_bar");
 
-    filtered_products.sort(function (a, b) {
-        if (a.name < b.name) { return -1; }
-        if (a.name > b.name) { return 1; }
-        return 0;
-    });
+serach_bar.addEventListener("input", (event) => {
+    searchForItems();
+})
+
+// sort
+const sortAscending = () => {
+    sortArr(products);
+    sortArr(filtered_products);
 
     deleteDisplayedProducts(filtered_products);
     displayProductsArray(filtered_products);
 }
 
-function sortDescending() {
+const sortDescending = () => {
     products.reverse();
     filtered_products.reverse();
 
