@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="Main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>חייזרים</title>
+</head>
+<body>
+    <div class="header_container">
+        <div class="hello_user">
+            <span class="user_name">שלום משתמש</span>
+            <span class="subtext">כניסתך האחרונה: 12:00</span>
+        </div>
+        <div class="timer">
+            <label class="subtext" id="timer"></label>
+        </div>
+        <div class="header">
+            <div class="icon"></div>
+            <div class="icon"></div>
+            <h2 class="title">המדריך לצעיר בגלקסיה</h2>
+        </div>
+    </div>
+    <div class="context">
+        <div class="product_info">
+            <h3 class="second_title">פירוט המוצר</h3>
+            <div>
+                <p>שם:<span id="product_name"></span></p>
+                <p>מחיר:<span id="product_price"></span></p>
+                <p>כמות במלאי:<span id="product_in_stock"></span></p>
+            </div>
+        </div>
+        <div class="search_product">
+            <div class="search_container">
+                <button class="search_icon" id="search_icon" onclick="searchForItems()">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+                <div class="search_bar">
+                    <input type="text" id="serach_bar" placeholder="...הזן קלט" class="search_bar_input">
+                </div>
+            </div>
+            <div class="products">
+                <div class="other_filters">
+                    <div>
+                        <input type="radio" name="sort" value="ascending" id="ascending" onclick="sortAscending()"
+                            checked>
+                        <label for="ascending" class="radio_text">ascending</label>
+                        <input type="radio" name="sort" value="descending" id="descending" onclick="sortDescending()">
+                        <label for="descending" class="radio_text">descending</label>
+                    </div>
+                    <button onclick="hideProducts()" id="show_products" class="show_products">הסתר מוצרים</button>
+                </div>
+                <div class="results" id="results"></div>
+            </div>
+        </div>
+    </div>
+    <script src="Main.js"></script>
+</body>
+</html>
