@@ -1,0 +1,226 @@
+body {
+    margin: 0;
+    border: 10px solid lightblue;
+    border-radius: 20px;
+    padding: 0.5% 0.5% 0.5% 5%;
+}
+
+.header_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4.3em;
+}
+
+.hello_user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 3px solid lightblue;
+    border-radius: 20px;
+    padding: 0 0.5em;
+    height: 3em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.user_name {
+    font-weight: bold;
+}
+
+.subtext {
+    font-size: small;
+}
+
+.timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 3px solid lightblue;
+    border-radius: 20px;
+    padding: 0 5%;
+    height: 3em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 0.5em;
+    width: 65%;
+    min-width: 24em;
+    background-color: rgb(179, 178, 178);
+    box-shadow: 0 0 5px 0.3em lightgray;
+    border-radius: 20px 10px 10px 20px;
+    padding-right: 2%;
+    align-items: center;
+}
+
+.title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.icon {
+    height: 3em;
+    width: 3em;
+    background-color: aliceblue;
+    border-radius: 50px;
+}
+
+.product_info {
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 35%;
+    padding: 0;
+}
+
+.second_title {
+    background-color: lightblue;
+    border-radius: 20px;
+    width: fit-content;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.product_info > div {
+    width: 80%;
+    height: 75%;
+    border-style: solid;
+    border-radius: 20px;
+    background-color: lightblue;
+}
+
+.product_info > div > p {
+    text-align: right;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.search_product {
+    display: flex;
+    flex-direction: column;
+    gap:1em;
+    width: 60%;
+}
+
+.search_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search_icon {
+    display: flex;
+    align-items: center;
+    font-size: large;
+    background-color: unset;
+    border: none;
+    transition-duration: 0.5s;
+}
+
+.search_icon:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.search_bar {
+    background-color: lightgray;
+    height: 2em;
+    width: 85%;
+    border-radius: 20px;
+    padding-right: 0.5em;
+}
+
+.search_bar_input {
+    color:rgb(31, 31, 31);
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 20px;
+    background-color: lightgray;
+    text-align: right;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.other_filters {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.radio_text {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.products {
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+    align-items: end;
+    background-color: lightgray;
+    border-radius: 20px;
+    height: 90%;
+    padding: 3%;
+}
+
+.select_product {
+    height: 160%;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid;
+    border-radius: 20px;
+    text-align: center;
+    padding: 2%;
+    background-color: lightblue;
+    box-shadow: 3px 2px 5px 0 gray;
+    transition-duration: 0.4s;
+}
+
+.select_product:hover {
+    cursor: pointer;
+    background-color: cyan;
+}
+
+.results {
+    width: 100%;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(3, minmax(20%, auto));
+}
+
+.show_products {
+    border: none;
+    font-size: large;
+    font-weight: bold;
+    background-color: lightblue;
+    border-radius: 20px;
+    width: fit-content;
+    padding: 10px 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    transition-duration: 0.4s;
+}
+
+.show_products:hover {
+    cursor: pointer;
+    background-color: cyan;
+}
+
+.context {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em 1em 2em;
+    margin-right: 2.5em;
+    margin-top: 1em;
+    height: 75vh;
+    background-color: lightblue;
+    border-radius: 20px;
+}
+
+.context > div {
+    border-radius: 20px;
+}
