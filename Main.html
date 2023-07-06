@@ -12,7 +12,7 @@
             <span class="subtext">כניסתך האחרונה: 12:00</span>
         </div>
         <div class="timer">
-            <label class="subtext" id="timer"></label>
+            <label id="timer" class="subtext"></label>
         </div>
         <div class="header">
             <div class="icon"></div>
@@ -21,35 +21,34 @@
         </div>
     </div>
     <div class="context">
-        <div class="product_info">
+        <div class="product_info" dir="rtl">
             <h3 class="second_title">פירוט המוצר</h3>
             <div>
-                <p>שם:<span id="product_name"></span></p>
-                <p>מחיר:<span id="product_price"></span></p>
-                <p>כמות במלאי:<span id="product_in_stock"></span></p>
+                <p>שם: <span id="product_name"></span></p>
+                <p>מחיר: <span id="product_price"></span></p>
+                <p>כמות במלאי: <span id="product_in_stock"></span></p>
             </div>
         </div>
         <div class="search_product">
             <div class="search_container">
-                <button class="search_icon" id="search_icon" onclick="searchForItems()">
-                    <i class="fa fa-search" aria-hidden="true"></i>
+                <button id="search_icon" class="search_icon" onclick="searchForItems()">
+                    <i class="fa fa-search"></i>
                 </button>
                 <div class="search_bar">
-                    <input type="text" id="serach_bar" placeholder="...הזן קלט" class="search_bar_input">
+                    <input id="serach_bar" class="search_bar_input" type="text" placeholder="...הזן קלט" dir="rtl">
                 </div>
             </div>
             <div class="products">
-                <div class="other_filters">
+                <div class="filters">
                     <div>
-                        <input type="radio" name="sort" value="ascending" id="ascending" onclick="sortAscending()"
-                            checked>
+                        <input id="ascending" type="radio" name="sort" value="ascending" onclick="sortAscending()" checked>
                         <label for="ascending" class="radio_text">ascending</label>
-                        <input type="radio" name="sort" value="descending" id="descending" onclick="sortDescending()">
+                        <input id="descending" type="radio" name="sort" value="descending" onclick="sortDescending()">
                         <label for="descending" class="radio_text">descending</label>
                     </div>
-                    <button onclick="hideProducts()" id="show_products" class="show_products">הסתר מוצרים</button>
+                    <button id="products_visibility" class="products_visibility" onclick="hideProducts()">הסתר מוצרים</button>
                 </div>
-                <div class="results" id="results"></div>
+                <div id="results" class="results" dir="rtl"></div>
             </div>
         </div>
     </div>
