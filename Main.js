@@ -77,7 +77,7 @@ const products = [
 
 sortArr(products);
 
-var filteredProducts = products.slice();
+const filteredProducts = products.slice();
 
 const results = document.getElementById("results");
 
